@@ -1,3 +1,6 @@
 *:hover { 
     background-color: yellow;
 }
+*:visited {
+    color: green;
+}
