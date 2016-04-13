@@ -22,7 +22,7 @@ a:active {
 * {
     color:black;
     text-align:center;
-    background-color:blue;
+    background-color:red;
 }
 
 /* p font size */
@@ -42,5 +42,5 @@ a {
 
 /* p1 font color*/
 p {
-    color:red;
+    color:blue;
 }
