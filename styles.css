@@ -17,3 +17,9 @@ a:hover {
 a:active {
     color: yellow;
 }
+
+/* p tags */
+p {
+    color:red;
+    text-align:right;
+}
