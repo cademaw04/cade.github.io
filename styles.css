@@ -1,6 +1,19 @@
-a:hover { 
-    background-color: yellow;
+/* unvisited link */
+a:link {
+    color: green;
 }
+
+/* visited link */
 a:visited {
     color: green;
+}
+
+/* mouse over link */
+a:hover {
+    color: red;
+}
+
+/* selected link */
+a:active {
+    color: yellow;
 }
