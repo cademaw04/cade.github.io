@@ -1,6 +1,6 @@
-*:hover { 
+a:hover { 
     background-color: yellow;
 }
-*:visited {
+a:visited {
     color: green;
 }
