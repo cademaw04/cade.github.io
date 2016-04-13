@@ -18,9 +18,14 @@ a:active {
     color: yellow;
 }
 
-/* p tags */
+/* all tags */
 * {
     color:black;
     text-align:center;
     background-color:white;
+}
+
+/* p font size */
+p {
+    font-size:120%;
 }
