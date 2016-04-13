@@ -19,7 +19,7 @@ a:active {
 }
 
 /* p tags */
-p {
+* {
     color:red;
-    text-align:right;
+    text-align:center;
 }
