@@ -29,6 +29,7 @@ function init() {
 
 function circle(x,y,r) {
   ctx.beginPath();
+  ctx.fillStyle = "blue";
   ctx.arc(x, y, r, 0, Math.PI*2, true);
   ctx.closePath();
   ctx.fill();
