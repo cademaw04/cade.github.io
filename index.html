@@ -12,7 +12,14 @@
 	
 		<script>
 		var ctx = $('#canvas')[0].getContext("2d");
-
+	
+	ctx.beginPath();
+	ctx.arc(75, 75, 10, 0, Math.PI*2, true); 
+	ctx.closePath();
+	ctx.fill();
+	
+	
+	
 	ctx.fillStyle = "#F0E68C";
 	ctx.beginPath();
 	ctx.arc(220, 220, 50, 0, Math.PI*2, true);
