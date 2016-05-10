@@ -23,6 +23,7 @@ var WIDTH;
 var HEIGHT;
 var ctx;
 var color = 'green';
+var contact = false;
 
 function init() {
   ctx = $('#canvas')[0].getContext("2d");
@@ -54,7 +55,6 @@ function clear() {
 //END LIBRARY CODE
 
 function draw() {
-  var contact = false;
   clear();
   circle(x, y, 10);
   
