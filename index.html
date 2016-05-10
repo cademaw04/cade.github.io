@@ -22,6 +22,7 @@ var dy = 4;
 var WIDTH;
 var HEIGHT;
 var ctx;
+var color = 'green';
 
 function init() {
   ctx = $('#canvas')[0].getContext("2d");
@@ -58,13 +59,14 @@ function draw() {
   
   
   
- if (x + dx > WIDTH || x + dx < 0)
+ if (x + dx > WIDTH || x + dx < 0) {
     dx = -dx;
     contact = true;
-  if (y + dy > HEIGHT || y + dy < 0)
+ }
+  if (y + dy > HEIGHT || y + dy < 0) {
     dy = -dy;
     contact = true;
-
+}
     
   x += dx;
   y += dy;
