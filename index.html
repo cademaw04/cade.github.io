@@ -32,7 +32,8 @@ function init() {
 
 function circle(x,y,r) {
   ctx.beginPath();
-  ctx.fillStyle = "purple";
+  color = (contact == true (color === 'green' ? 'pink' : 'green') : color);
+  ctx.fillStyle = color;
   ctx.arc(x, y, r, 0, Math.PI*2, true);
   ctx.closePath();
   ctx.fill();
@@ -59,9 +60,10 @@ function draw() {
   
  if (x + dx > WIDTH || x + dx < 0)
     dx = -dx;
+    contact = true;
   if (y + dy > HEIGHT || y + dy < 0)
     dy = -dy;
-    
+    contact = true;
 
     
   x += dx;
