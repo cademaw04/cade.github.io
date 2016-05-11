@@ -59,11 +59,13 @@ function draw() {
   
   
  if (x + dx > WIDTH || x + dx < 0) {
+    console.log("The ball should be turning blue");
     dx = -dx;
     color = "blue";
     
  }
   if (y + dy > HEIGHT || y + dy < 0) {
+    console.log("The ball should be turning blue");
     dy = -dy;
     color = "yellow";
 }
