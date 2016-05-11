@@ -19,10 +19,11 @@ var x = 100;
 var y = 100;
 var dx = 2;
 var dy = 4;
+var ballRadius = 10; 
 var WIDTH;
 var HEIGHT;
 var ctx;
-var color = "#ff0000"
+var color = "#ff0000";
 
 function init() {
   ctx = $('#canvas')[0].getContext("2d");
@@ -31,9 +32,9 @@ function init() {
   return setInterval(draw, 10);
 }
 
-function circle(x,y,r) {
+function circle(x,y,ballRadius) {
   ctx.beginPath();
-  ctx.arc(x, y, r, 0, Math.PI*2, true);
+  ctx.arc(x, y, ballRadius, 0, Math.PI*2, true);
   ctx.fillStyle = color;
   ctx.fill();
   ctx.closePath();
@@ -58,13 +59,13 @@ function draw() {
   
   
   
- if (x + dx > WIDTH || x + dx < 0) {
+ if (x + dx > canvas.width - ballRadius || x + dx < ballRadius){
     console.log("The ball should be turning blue");
     dx = -dx;
     color = "blue";
     
  }
-  if (y + dy > HEIGHT || y + dy < 0) {
+  if (y + dx > canvas.width - ballRadius || y + dx < ballRadius) {
     console.log("The ball should be turning blue");
     dy = -dy;
     color = "yellow";
