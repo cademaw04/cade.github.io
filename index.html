@@ -22,8 +22,7 @@ var dy = 4;
 var WIDTH;
 var HEIGHT;
 var ctx;
-var color = 'green';
-var contact = false;
+var color = "#ff0000";
 
 function init() {
   ctx = $('#canvas')[0].getContext("2d");
@@ -35,7 +34,6 @@ function init() {
 function circle(x,y,r) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI*2, true);
-  color = (contact === true ? (color === 'green' ? 'pink' : 'green') : color);
   ctx.fillStyle = color;
   ctx.fill();
   ctx.closePath();
@@ -62,11 +60,12 @@ function draw() {
   
  if (x + dx > WIDTH || x + dx < 0) {
     dx = -dx;
-    contact = true;
+    color = "#" + ((1 << 24) * MATH.random() | 0).toString(16);
+    
  }
   if (y + dy > HEIGHT || y + dy < 0) {
     dy = -dy;
-    contact = true;
+    color = "#" + ((1 << 24) * MATH.random() | 0).toString(16);
 }
     
   x += dx;
