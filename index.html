@@ -60,12 +60,12 @@ function draw() {
   
  if (x + dx > WIDTH || x + dx < 0) {
     dx = -dx;
-    color = "#" + ((1 << 24) * MATH.random() | 0).toString(16);
+    color = "blue";
     
  }
   if (y + dy > HEIGHT || y + dy < 0) {
     dy = -dy;
-    color = "#" + ((1 << 24) * MATH.random() | 0).toString(16);
+    color = "yellow";
 }
     
   x += dx;
