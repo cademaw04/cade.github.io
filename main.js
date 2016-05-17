@@ -26,3 +26,11 @@ var ball; //The ball graphic
 var cpu; //The CPU paddle
 var win; //The winning popup
 var lose; //The losing popup
+
+
+
+//[Score]
+ 
+var playerScore; //The main player score
+var cpuScore; //The CPU score
+var cpuSpeed=6; //The speed of the CPU paddle; the faster it is the harder the game is
