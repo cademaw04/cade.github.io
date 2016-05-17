@@ -34,3 +34,9 @@ var lose; //The losing popup
 var playerScore; //The main player score
 var cpuScore; //The CPU score
 var cpuSpeed=6; //The speed of the CPU paddle; the faster it is the harder the game is
+
+
+// Variables
+ 
+var xSpeed = 5;
+var ySpeed = 5;
