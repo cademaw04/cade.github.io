@@ -63,7 +63,7 @@ function Main()
      
      
     /* Set The Flash Plugin for browsers that don't support SoundJS */
-    SoundJS.FlashPlugin.BASE_PATH = "assets/";
+    SoundJS.FlashPlugin.BASE_PATH = "/";
     if (!SoundJS.checkPlugin(true)) {
       alert("Error!");
       return;
