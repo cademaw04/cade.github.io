@@ -163,7 +163,7 @@ function addTitleView()
     startB.onPress = tweenTitleView;
     creditsB.onPress = showCredits;
 
-
+}
 function showCredits()
 {
     // Show Credits
