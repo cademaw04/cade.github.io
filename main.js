@@ -40,3 +40,13 @@ var cpuSpeed=6; //The speed of the CPU paddle; the faster it is the harder the g
  
 var xSpeed = 5;
 var ySpeed = 5;
+
+
+var tkr = new Object;
+
+//preloader
+var preloader;
+var manifest;
+var totalLoaded = 0;
+
+var TitleView = new Container();
