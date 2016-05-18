@@ -100,3 +100,33 @@ function Main()
     Ticker.setFPS(30);
     Ticker.addListener(stage);
 }
+
+
+function handleProgress(event)
+{
+    //use event.loaded to get the percentage of the loading
+}
+ 
+function handleComplete(event) {
+         //triggered when all loading is complete
+}
+ 
+function handleFileLoad(event) {
+         //triggered when an individual file completes loading
+             
+         switch(event.type)
+         {
+            case PreloadJS.IMAGE:
+            //image loaded
+             var img = new Image();
+              img.src = event.src;
+              img.onload = handleLoadComplete;
+              window[event.id] = new Bitmap(img);
+            break;
+ 
+            case PreloadJS.SOUND:
+            //sound loaded
+            handleLoadComplete();
+            break;
+         }
+}
