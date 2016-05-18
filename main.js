@@ -130,3 +130,15 @@ function handleFileLoad(event) {
             break;
          }
 }
+
+
+function handleLoadComplete(event) 
+{
+ 
+   totalLoaded++;
+    
+   if(manifest.length==totalLoaded)
+   {
+       addTitleView();
+   }
+}
