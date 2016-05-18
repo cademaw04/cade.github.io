@@ -62,12 +62,7 @@ function Main()
     stage.mouseEventsEnabled = true;
      
      
-    /* Set The Flash Plugin for browsers that don't support SoundJS */
-    SoundJS.FlashPlugin.BASE_PATH = "/";
-    if (!SoundJS.checkPlugin(true)) {
-      alert("Error!");
-      return;
-    }
+    
  
     manifest = [
                 {src:"bg.png", id:"bg"},
