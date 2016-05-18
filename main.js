@@ -162,3 +162,39 @@ function addTitleView()
      
     startB.onPress = tweenTitleView;
     creditsB.onPress = showCredits;
+
+
+function showCredits()
+{
+    // Show Credits
+         
+    credits.x = 480;
+         
+    stage.addChild(credits);
+    stage.update();
+    Tween.get(credits).to({x:0}, 300);
+    credits.onPress = hideCredits;
+}
+ 
+// Hide Credits
+ 
+function hideCredits(e)
+{
+    Tween.get(credits).to({x:480}, 300).call(rmvCredits);
+}
+ 
+// Remove Credits
+ 
+function rmvCredits()
+{
+    stage.removeChild(credits);
+}
+ 
+// Tween Title View
+ 
+function tweenTitleView()
+{       
+    // Start Game
+         
+ Tween.get(TitleView).to({y:-320}, 300).call(addGameView);
+}
