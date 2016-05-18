@@ -142,3 +142,23 @@ function handleLoadComplete(event)
        addTitleView();
    }
 }
+
+
+function addTitleView()
+{
+    //console.log("Add Title View");
+    startB.x = 240 - 31.5;
+    startB.y = 160;
+    startB.name = 'startB';
+     
+    creditsB.x = 241 - 42;
+    creditsB.y = 200;
+     
+    TitleView.addChild(main, startB, creditsB);
+    stage.addChild(bg, TitleView);
+    stage.update();
+     
+    // Button Listeners
+     
+    startB.onPress = tweenTitleView;
+    creditsB.onPress = showCredits;
