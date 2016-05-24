@@ -1,6 +1,6 @@
 billmill.org/static/canvastutorial/ball.html
 
-http://tinyurl.com/skwerglesyay
+http://www.lessmilk.com/tutorial/flappy-bird-phaser-1
 
 jshint.com
 
