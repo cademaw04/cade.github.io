@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 	<head>
-		<title>Bricks</title>
+		<title>Brick Breaker</title>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<link rel="stylesheet" type="text/css" href="turtles.css">
 	</head>
@@ -17,218 +17,190 @@
 	//CONSOLE LOG 
 			console.log ("Hey! You found your way to the console! Congrats!");
 			//BEGIN LIBRARY CODE
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import javax.swing.JPanel;
-
-
-public class GamePanel extends JPanel implements KeyListener {
-    
-    BufferedImage buffer;
-    GameFrame gameFrame;
-    
-    Ball ball;
-    Bat playerBat;
-    Brick brick;
-    boolean gameOver = false;
-
-    public GamePanel()
-    {
-        setIgnoreRepaint(true);
-        addKeyListener(this);
-        setFocusable(true);
-    }
-    
-    public void Initialize(){
-        
-        buffer = new BufferedImage(500, 600, BufferedImage.TYPE_INT_RGB);
-        ball = new Ball(this, 100, 100, 3, 3);
-        playerBat = new Bat(this, 0, 520, 65, 15, 5);
-        brick = new Brick(this, 350, 100, 75, 20, true, true);
-    }
-
-    public void update(){
-        ball.update();
-        playerBat.update();
-    }
-
-    public void checkCollisions(){
-        if (playerBat.getBounds().intersects(ball.getBounds())){
-                ball.reverseY();
-        } else if (ball.getBounds().intersects(brick.getBounds())) {
-            brick.isAlive = false;
-        } else {
-            playerBat.collision = false;
-        }
-        
-    }
-    
-    public void drawBuffer(){
-        
-        // setup the buffer
-        Graphics2D b = buffer.createGraphics();
-        
-        // check if the game is over and post message to screen
-        if(gameOver){
-            b.setColor(Color.BLACK);
-            b.drawString("GAME OVER", (buffer.getWidth()/2)-20, buffer.getHeight()/2);
-            b.dispose();
-        }
-        
-        // Setup Background Colour
-        b.setColor(Color.CYAN);
-        b.fillRect(0,0,500,600);
-        
-        // setup a temp brick
-        if(brick.isAlive){
-            b.setColor(Color.BLACK);
-            b.fillRect(brick.x, brick.y, brick.width, brick.height);
-        }
-        
-        // setup a red ball
-        b.setColor(Color.RED);
-        b.fillOval(ball.getX(), ball.getY(), ball.size, ball.size);
-        
-        // setup the players bat
-        b.setColor(Color.WHITE);
-        b.fillRect(playerBat.xLocation, playerBat.yLocation, playerBat.width, playerBat.height);
-        
-        // Disposes of this graphics context
-        b.dispose();
-        
-    }
-    
-    public void drawScreen(){
-        
-        Graphics2D g = (Graphics2D)this.getGraphics();
-        g.drawImage(buffer,0,0,this);
-        Toolkit.getDefaultToolkit().sync();
-        g.dispose();
-        
-    }
-
-    public void startGame(){
-        
-        Initialize();
-        while(!gameOver)
-        {
-            try
-            {
-                update();
-                checkCollisions();
-                drawBuffer();
-                drawScreen();
-                Thread.sleep(15);
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }  
-        }
-
-        System.out.println("!!!GAME OVER!!!");
-        
-    }
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-        
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        
-       int key = e.getKeyCode();
-       
-       if (key == KeyEvent.VK_LEFT)
-           playerBat.left = true;
-       if (key == KeyEvent.VK_RIGHT)
-           playerBat.right = true;
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    
-       int key = e.getKeyCode();
-       
-       if (key == KeyEvent.VK_LEFT)
-           playerBat.left = false;
-       if (key == KeyEvent.VK_RIGHT)
-           playerBat.right = false;
-    }
-
+var x = 100;
+var y = 100;
+var dx = 2;
+var dy = 4;
+var ballRadius = 10; 
+var WIDTH;
+var HEIGHT;
+var ctx;
+var color = "#ff0000";
+function init() {
+  ctx = $('#canvas')[0].getContext("2d");
+  WIDTH = $("#canvas").width();
+  HEIGHT = $("#canvas").height();
+  return setInterval(draw, 10);
 }
-
-import java.awt.Rectangle;
-
-public class Bat {
-    
-    GamePanel game;
-    
-    int width, height, xLocation, yLocation, speed;
-    boolean left, right, collision;
-    
-    public Bat(GamePanel game, int x, int y, int width, int height, int speed){
-        
-        this.game = game;
-        this.xLocation = x;
-        this.yLocation = y;
-        this.width = width;
-        this.height = height;
-        this.speed = speed;
-    }
-    
-    public void update(){
-        if (left)
-            if (xLocation <= 0){ 
-                xLocation = 0;
-            } else {
-                xLocation -= speed;
-            }  
-        if (right)
-            if (xLocation >= game.getWidth()-width){
-                xLocation = game.getWidth()-width;
-            } else {
-                xLocation += speed;
-            }
-    }
-    
-     // reverse the x direction
-    public void reverseX(){
-        xLocation *= -1;
-    }
-    
-    // reverse the y direction
-    public void reverseY(){
-        yLocation *= -1;
-    }
-    
-    public int getX(){
-        return xLocation;
-    }
-    
-    public int getY(){
-        return yLocation;
-    }
-    
-    public int getWidth(){
-        return width;
-    }
-    
-    public int getHeight(){
-        return height;
-    }
-    
-    public Rectangle getBounds()
-    {
-        return new Rectangle(getX(),getY(), getWidth(), getHeight());
-    }
-    
+function circle(x,y,ballRadius) {
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI*2, true);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.closePath();
 }
-
-	</script>
-</body>
+function rect(x,y,w,h) {
+  ctx.beginPath();
+  ctx.rect(x,y,w,h);
+  ctx.closePath();
+  ctx.fill();
+}
+function clear() {
+  ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+//END LIBRARY CODE
+function draw() {
+  clear();
+  circle(x, y, 10);
+  
+  
+  
+ if (x + dx > canvas.width - ballRadius || x + dx < ballRadius){
+    console.log("The ball should be turning blue");
+    dx = -dx;
+    color = "blue";
+    
+ }
+  if (y + dx > canvas.width - ballRadius || y + dx < ballRadius) {
+    console.log("The ball should be turning blue");
+    dy = -dy;
+    color = "yellow";
+}
+    
+  x += dx;
+  y += dy;
+}
+var paddlex;
+var paddleh;
+var paddlew;
+function init_paddle() {
+  paddlex = WIDTH / 2;
+  paddleh = 10;
+  paddlew = 75;
+}
+function draw() {
+  clear();
+  circle(x, y, 10);
+  rect(paddlex, HEIGHT-paddleh, paddlew, paddleh);
+ 
+  if (x + dx > WIDTH || x + dx < 0)
+    dx = -dx;
+  if (y + dy < 0)
+    dy = -dy;
+  else if (y + dy > HEIGHT) {
+    if (x > paddlex && x < paddlex + paddlew)
+      dy = -dy;
+    else
+      //game over, so stop the animation
+      clearInterval(intervalId);
+  }
+ 
+  x += dx;
+  y += dy;
+}
+init();
+init_paddle();
+rightDown = false;
+leftDown = false;
+//set rightDown or leftDown if the right or left keys are down
+function onKeyDown(evt) {
+  if (evt.keyCode == 68) rightDown = true;
+  else if (evt.keyCode == 65) leftDown = true;
+}
+//and unset them when the right or left key is released
+function onKeyUp(evt) {
+  if (evt.keyCode == 68) rightDown = false;
+  else if (evt.keyCode == 65) leftDown = false;
+}
+$(document).keydown(onKeyDown);
+$(document).keyup(onKeyUp);
+       
+function draw() {
+  clear();
+  circle(x, y, 10);
+  //move the paddle if left or right is currently pressed
+  if (rightDown) paddlex += 5;
+  else if (leftDown) paddlex -= 5;
+  rect(paddlex, HEIGHT-paddleh, paddlew, paddleh);
+ 
+  if (x + dx > WIDTH || x + dx < 0)
+    dx = -dx;
+  if (y + dy < 0)
+    dy = -dy;
+  else if (y + dy > HEIGHT) {
+    if (x > paddlex && x < paddlex + paddlew)
+      dy = -dy;
+    else
+      clearInterval(intervalId);
+  }
+ 
+  x += dx;
+  y += dy;
+}
+init();
+var bricks;
+var NROWS;
+var NCOLS;
+var BRICKWIDTH;
+var BRICKHEIGHT;
+var PADDING;
+function initbricks() {
+  NROWS = 5;
+  NCOLS = 5;
+  BRICKWIDTH = (WIDTH/NCOLS) - 1;
+  BRICKHEIGHT = 15;
+  PADDING = 1;
+  bricks = new Array(NROWS);
+  for (i=0; i < NROWS; i++) {
+    bricks[i] = new Array(NCOLS);
+    for (j=0; j < NCOLS; j++) {
+      bricks[i][j] = 1;
+    }
+  }
+}
+       
+function draw() {
+  clear();
+  circle(x, y, 10);
+  if (rightDown) paddlex += 5;
+  else if (leftDown) paddlex -= 5;
+  rect(paddlex, HEIGHT-paddleh, paddlew, paddleh);
+  //draw bricks
+  for (i=0; i < NROWS; i++) {
+    for (j=0; j < NCOLS; j++) {
+      if (bricks[i][j] == 1) {
+        rect((j * (BRICKWIDTH + PADDING)) + PADDING, 
+             (i * (BRICKHEIGHT + PADDING)) + PADDING,
+             BRICKWIDTH, BRICKHEIGHT);
+      }
+    }
+  }
+  //have we hit a brick?
+  rowheight = BRICKHEIGHT + PADDING;
+  colwidth = BRICKWIDTH + PADDING;
+  row = Math.floor(y/rowheight);
+  col = Math.floor(x/colwidth);
+  //if so, reverse the ball and mark the brick as broken
+  if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
+    dy = -dy;
+    bricks[row][col] = 0;
+  }
+ 
+  if (x + dx > WIDTH || x + dx < 0)
+    dx = -dx;
+  if (y + dy < 0)
+    dy = -dy;
+  else if (y + dy > HEIGHT) {
+    if (x > paddlex && x < paddlex + paddlew)
+      dy = -dy;
+    else
+      clearInterval(intervalId);
+  }
+ 
+  x += dx;
+  y += dy;
+}
+init();
+initbricks();
+		</script>
+	</body>
