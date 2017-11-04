@@ -152,6 +152,13 @@ function draw() {
   y += dy;
 }
 
+// check if the game is over and post message to screen
+if(gameOver){
+	b.setColor(Color.BLACK);
+	b.drawString("GAME OVER", (buffer.getWidth()/2)-20, buffer.getHeight()/2);
+	b.dispose();
+
+			
 init();
 
 var bricks;
@@ -222,7 +229,31 @@ function draw() {
   x += dx;
   y += dy;
 }
+//GAME OVER?
+public void startGame(){
+         
+        Initialize();
+        while(!gameOver)
+        {
+            try
+            {
+                update();
+                checkCollisions();
+                drawBuffer();
+                drawScreen();
+                Thread.sleep(15);
+            }
+            catch(Exception e)
+		{
+                e.printStackTrace();
+            } 
+        }
+        System.out.println("!!!GAME OVER!!!")
+    }
 
+     
+
+	
 init();
 initbricks();
 		</script>
